@@ -11,6 +11,11 @@ session_start();
 if (array_key_exists('3', $url)) {
     if ($url['3'] == 'all' and $method == 'GET') {
         echo UserController::getAllUsers();
+        http_response_code(200);
+    } else if ($url['3'] == 'login' and $method == 'PUT') {
+        $data = (array) json_decode(file_get_contents('php://input'));
+        echo UserController::login($data);
+        http_response_code(200);
     }
 }
 

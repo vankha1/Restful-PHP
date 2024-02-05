@@ -14,6 +14,14 @@ class User
         $query = "SELECT * FROM person";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUser($username)
+    {
+        $query = "SELECT id,firstname,lastname,password,address,email,phone FROM person WHERE username = '$username'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC to get only the associative array 
     }
 }

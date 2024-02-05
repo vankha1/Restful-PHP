@@ -16,6 +16,10 @@ if (array_key_exists('3', $url)) {
         $data = (array) json_decode(file_get_contents('php://input'));
         echo UserController::login($data);
         http_response_code(200);
+    } else if ($url['3'] == 'signup' and $method == 'PUT') {
+        $data = (array) json_decode(file_get_contents('php://input'));
+        echo UserController::signup($data);
+        http_response_code(200);
     }
 }
 
